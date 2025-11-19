@@ -34,6 +34,7 @@ void greetings() {
   } else if (12 <= time.hour && time.hour <= 17) {
     greeting = Greet.afternoon;
     greetingTime = Time.afternoon;
+    // print('animal');
   } else {
     greeting = Greet.evening;
     greetingTime = Time.evening;

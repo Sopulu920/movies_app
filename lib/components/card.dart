@@ -18,7 +18,7 @@ class MovieCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
       width: 170,
-      height: 300,
+      // height: 300,
       decoration: BoxDecoration(
         color: Color(0xFFFFFFFF),
         borderRadius: BorderRadius.circular(25),
@@ -36,16 +36,21 @@ class MovieCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(16),
-            child: Image.asset(
-              'lib/assets/images/vegf (11).jpg',
-              fit: BoxFit.cover,
+            child: AspectRatio(
+              aspectRatio: 1,
+              child: Image.network(
+                image,
+                fit: BoxFit.cover,
+                // width: 200,
+                // height: 200,
+              ),
             ),
           ),
-          StyledText('Name:',fontSize: 12,),
-          StyledText(name),
-          StyledText('Ratings:',fontSize: 12,),
+          StyledText('Name:', fontSize: 12),
+          StyledText(name, textAlign: TextAlign.center),
+          StyledText('Ratings:', fontSize: 12),
           StyledText(rating),
-          StyledText('Release Date:',fontSize: 12,),
+          StyledText('Release Date:', fontSize: 12),
           StyledText(releaseDate),
         ],
       ),
