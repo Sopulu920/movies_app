@@ -17,6 +17,18 @@ class Movie {
   });
 }
 
+void getData() async{
+ await Future.delayed(Duration(seconds: 3), (){
+    print('Dracarays');
+  });
+
+   Future.delayed(Duration(seconds: 2), (){
+    print('Dragon blood');
+  });
+
+  print('witcher');
+}
+
 const List<Movie> movies = [
   Movie(
     movieName: 'Dune',
@@ -96,6 +108,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    getData();
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       // crossAxisAlignment: CrossAxisAlignment.center,
