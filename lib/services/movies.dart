@@ -1,19 +1,27 @@
-// import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-final String url = dotenv.env['TMDB_API_URL']!;
-final String apiKey = dotenv.env['TMDB_API_KEY']!;
-
 void getMovie() async {
-  var baseUrl = Uri.https(
-    url,
+  final String baseUrl = dotenv.env['TMDB_API_URL']!;
+  final String apiKey = dotenv.env['TMDB_API_KEY']!;
+
+  final uri = Uri.https(
+    baseUrl,
     'movie/popular',
-    {apiKey} as Map<String, dynamic>?,
+    {
+      'api_key': apiKey,
+      'language': 'en-US',
+      'page': '1',
+    },
   );
 
-  var response = await http.get(baseUrl);
+  final response = await http.get(uri);
+
   if (response.statusCode == 200) {
-    print('finally');
+    print("Success!");
+    print(response.body);
+  } else {
+    print("Failed: ${response.statusCode}");
+    print(response.body);
   }
 }

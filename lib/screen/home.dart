@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movies_app/components/card.dart';
 import 'package:movies_app/components/greeting.dart';
 // import 'package:movies_app/component/search.dart';
+import 'package:movies_app/services/movies.dart';
 
 class Movie {
   final String movieName;
@@ -109,6 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     getData();
+    getMovie();
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       // crossAxisAlignment: CrossAxisAlignment.center,
