@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/components/styled_text.dart';
+import 'package:movies_app/util/route.dart';
 
 class MovieCard extends StatelessWidget {
   const MovieCard(
@@ -20,7 +21,7 @@ class MovieCard extends StatelessWidget {
         padding: EdgeInsets.all(0)
       ),
       onPressed: () {
-        Navigator.pushNamed(context, '/details');
+        Navigator.pushNamed(context, routes.details);
       },
       child: Container(
         padding: EdgeInsets.fromLTRB(10, 10, 10, 10),

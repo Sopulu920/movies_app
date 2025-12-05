@@ -18,86 +18,7 @@ class Movie {
   });
 }
 
-void getData() async{
- await Future.delayed(Duration(seconds: 3), (){
-    print('Dracarays');
-  });
-
-   Future.delayed(Duration(seconds: 2), (){
-    print('Dragon blood');
-  });
-
-  print('witcher');
-}
-
-const List<Movie> movies = [
-  Movie(
-    movieName: 'Dune',
-    ratings: '3.9',
-    date: '20-Oct-2009',
-    image: 'https://m.media-amazon.com/images/I/81f0v6SxfBL._AC_SY679_.jpg',
-  ),
-  Movie(
-    movieName: 'Inception',
-    ratings: '4.7',
-    date: '16-Jul-2010',
-    image: 'https://m.media-amazon.com/images/I/51s+MTAKp5L._AC_.jpg',
-  ),
-  Movie(
-    movieName: 'Interstellar',
-    ratings: '4.6',
-    date: '07-Nov-2014',
-    image: 'https://m.media-amazon.com/images/I/71npld+uN6L._AC_SY679_.jpg',
-  ),
-  Movie(
-    movieName: 'The Dark Knight',
-    ratings: '4.8',
-    date: '18-Jul-2008',
-    image: 'https://m.media-amazon.com/images/I/51EbJjlV7CL._AC_.jpg',
-  ),
-  Movie(
-    movieName: 'Avatar',
-    ratings: '4.2',
-    date: '18-Dec-2009',
-    image: 'https://m.media-amazon.com/images/I/61OjP4R98BL._AC_SY679_.jpg',
-  ),
-  Movie(
-    movieName: 'The Matrix',
-    ratings: '4.5',
-    date: '31-Mar-1999',
-    image: 'https://m.media-amazon.com/images/I/51vpnbwFHrL._AC_.jpg',
-  ),
-  Movie(
-    movieName: 'Guardians of the Galaxy',
-    ratings: '4.1',
-    date: '01-Aug-2014',
-    image: 'https://m.media-amazon.com/images/I/81Y8RzA5gPL._AC_SY679_.jpg',
-  ),
-  Movie(
-    movieName: 'Avengers: Endgame',
-    ratings: '4.9',
-    date: '26-Apr-2019',
-    image: 'https://m.media-amazon.com/images/I/81ExhpBEbHL._AC_SY679_.jpg',
-  ),
-  Movie(
-    movieName: 'Joker',
-    ratings: '4.3',
-    date: '04-Oct-2019',
-    image: 'https://m.media-amazon.com/images/I/71q2Lf7e0kL._AC_SY679_.jpg',
-  ),
-  Movie(
-    movieName: 'Tenet',
-    ratings: '3.8',
-    date: '03-Sep-2020',
-    image: 'https://m.media-amazon.com/images/I/71E8Oa6bSJL._AC_SY679_.jpg',
-  ),
-  Movie(
-    movieName: 'Black Panther',
-    ratings: '4.4',
-    date: '16-Feb-2018',
-    image: 'https://m.media-amazon.com/images/',
-  ),
-];
+List<Movie> movies = [];
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -107,15 +28,40 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  void initState() {
+    super.initState();
+    fetchMovieData();
+  }
+
+  void fetchMovieData() async {
+    final result = await getMovie();
+
+    setState(() {
+      movies = result
+          .map(
+            (item) => Movie(
+              movieName: item['original_title'],
+              ratings: item['vote_average'].toString(),
+              date: item['release_date'],
+              image: item['poster_path'] != null
+                  ? ' https://image.tmdb.org/t/p/w500${item['poster_path']}'
+                  : "https://via.placeholder.com/300x450.png?text=No+Image",
+            ),
+          )
+          .toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    getData();
-    getMovie();
+    // fetchmovieData();
+    // getData();
+    // getMovie();
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       // crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-         Greeting(),
+        Greeting(),
         SearchBar(),
         // Search(),
         // Card(child: Text("data"),),
