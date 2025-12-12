@@ -3,6 +3,7 @@ import 'package:movies_app/components/card.dart';
 import 'package:movies_app/components/greeting.dart';
 // import 'package:movies_app/component/search.dart';
 import 'package:movies_app/services/movies.dart';
+import 'package:movies_app/util/format.dart';
 
 class Movie {
   final String movieName;
@@ -41,10 +42,10 @@ class _HomeScreenState extends State<HomeScreen> {
           .map(
             (item) => Movie(
               movieName: item['original_title'],
-              ratings: item['vote_average'].toString(),
-              date: item['release_date'],
+              ratings: rate_format(item['vote_average']),
+              date: date_format(item['release_date']),
               image: item['poster_path'] != null
-                  ? ' https://image.tmdb.org/t/p/w500${item['poster_path']}'
+                  ? 'https://image.tmdb.org/t/p/w500${item['poster_path']}'
                   : "https://via.placeholder.com/300x450.png?text=No+Image",
             ),
           )
@@ -77,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisCount: 2,
             crossAxisSpacing: 10.0,
             mainAxisSpacing: 10.0,
-            childAspectRatio: 0.55,
+            childAspectRatio: 0.5,
             children: <Widget>[
               ...movies.map(
                 (items) => MovieCard(

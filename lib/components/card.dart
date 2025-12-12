@@ -45,7 +45,7 @@ class MovieCard extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(16),
               child: AspectRatio(
-                aspectRatio: 1,
+                aspectRatio: 0.7,
                 child: Image.network(
                   image,
                   fit: BoxFit.cover,
