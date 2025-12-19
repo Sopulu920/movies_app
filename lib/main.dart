@@ -11,7 +11,7 @@ void main() async {
       initialRoute: '/',
       routes: {
         '/': (context) => MoviesApp(),
-        '/details': (context) => DetailsScreen(),
+        '/details': (context) => MovieDetails(),
       },
     ),
   );
@@ -37,6 +37,12 @@ class MovieDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DetailsScreen();
+    return Scaffold(
+      appBar: AppBar(
+        title: StyledText("Details"),
+        backgroundColor: Colors.blueAccent,
+      ),
+      body: DetailsScreen(),
+    );
   }
 }

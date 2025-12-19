@@ -78,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisCount: 2,
             crossAxisSpacing: 10.0,
             mainAxisSpacing: 10.0,
-            childAspectRatio: 0.5,
+            childAspectRatio: 0.4,
             children: <Widget>[
               ...movies.map(
                 (items) => MovieCard(
